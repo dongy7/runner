@@ -7,12 +7,19 @@ public class PlayerScript : MonoBehaviour {
 	Vector2 movement;
 
 	void Update () {
-		var inputX = Input.GetAxis ("Horizontal");
-		var inputY = Input.GetAxis ("Vertical");
+		this.movement = Vector2.zero;
+		if (Input.GetKey (KeyCode.RightArrow)) {
+			this.movement.x += 1f;
+		}
+		if (Input.GetKey (KeyCode.LeftArrow)) {
+			this.movement.x -= 1f;
+		}
+		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+			this.movement.y = 1f;
+		}
 
-		this.movement = new Vector2 (
-			this.speed.x * inputX,
-			this.speed.y * inputY);
+		this.movement.x *= this.speed.x;
+		this.movement.y *= this.speed.y;
 	}
 
 	void FixedUpdate() {
